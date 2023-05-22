@@ -11,19 +11,24 @@ function DynamicInput() {
    const [valuepercent, setValuepercent] = useState([]);
    const LIMIT = 3;
 
+   const [inputValues, setInputValues] = useState([]); // Array de valores de los inputs
+
+   // Función para manejar el cambio de valor de un input específico
+   const handleInputChange = (index, value) => {
+      setInputValues((prevValues) => {
+         const newInputValues = [...prevValues]; // Copiar el array actual
+         newInputValues[index] = value; // Actualizar el valor del input en el índice dado
+         return newInputValues; // Retornar los nuevos valores actualizados
+      });
+   };
    //ADD SCORE INPUT
    function handleScore() {
-      if (score.length < LIMIT) {
-         setScore([...score, <input key={score.length} type="text" placeholder={'SCORE'} name="score" />]);
-      }
-      console.log(score.length);
+      setScore([...score, <input key={score.length} type="text" placeholder={'SCORE'} name="score" onChange={(ev) => handleInputChange(percent.length, ev.target.value)} />]);
    }
 
    //ADD PERCENT INPUT
    function handlePercent() {
-      if (percent.length < LIMIT) {
-         setPercent([...percent, <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" />]);
-      }
+      setPercent([...percent, <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" />]);
    }
 
    //REMOVE INPUT
@@ -42,19 +47,19 @@ function DynamicInput() {
 
    //GET INPUT VALUE
    const getInput = (ev) => {
+      console.log('hola');
       ev.preventDefault();
+      console.log('todos');
       const inputs = ev.target.elements.score;
-      console.log(inputs);
       const newScores = Array.from(inputs).map((input) => input.value);
-      console.log(newScores);
       setValuescore(newScores);
-      console.log(valuescore);
+      console.log(score);
    };
 
    // GET PERCENT VALUE
    const getPercent = (ev) => {
       ev.preventDefault();
-      const inputs = ev.target.elements.score;
+      const inputs = ev.target.elements.percent;
       const newScores = Array.from(inputs).map((input) => input.value);
       setValuepercent(newScores);
    };
@@ -83,7 +88,7 @@ function DynamicInput() {
          <button
             onClick={() => {
                handleScore();
-               // handlePercent();
+               handlePercent();
             }}
          >
             Agregar
