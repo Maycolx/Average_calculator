@@ -7,15 +7,23 @@ import './button.css';
 function DynamicInput() {
    const [score, setScore] = useState([]);
    const [percent, setPercent] = useState([]);
-   const [valuescore, setValuescore] = useState([]);
-   const [valuepercent, setValuepercent] = useState([]);
+   const [valuescore, setValuescore] = useState([]); // Array de valores de los inputs score
+   const [valuepercent, setValuepercent] = useState([]); // Array de valores de los inputs percent
+
    const LIMIT = 3;
 
-   const [inputValues, setInputValues] = useState([]); // Array de valores de los inputs
+   // Función para manejar el cambio de valor de un input específico
+   const handleInputChangeScore = (index, value) => {
+      setValuescore((prevValues) => {
+         const newInputValues = [...prevValues]; // Copiar el array actual
+         newInputValues[index] = value; // Actualizar el valor del input en el índice dado
+         return newInputValues; // Retornar los nuevos valores actualizados
+      });
+   };
 
    // Función para manejar el cambio de valor de un input específico
-   const handleInputChange = (index, value) => {
-      setInputValues((prevValues) => {
+   const handleInputChangePercent = (index, value) => {
+      setValuepercent((prevValues) => {
          const newInputValues = [...prevValues]; // Copiar el array actual
          newInputValues[index] = value; // Actualizar el valor del input en el índice dado
          return newInputValues; // Retornar los nuevos valores actualizados
@@ -23,12 +31,12 @@ function DynamicInput() {
    };
    //ADD SCORE INPUT
    function handleScore() {
-      setScore([...score, <input key={score.length} type="text" placeholder={'SCORE'} name="score" onChange={(ev) => handleInputChange(percent.length, ev.target.value)} />]);
+      setScore([...score, <input key={score.length} type="text" placeholder={'SCORE'} name="score" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />]);
    }
 
    //ADD PERCENT INPUT
    function handlePercent() {
-      setPercent([...percent, <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" />]);
+      setPercent([...percent, <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />]);
    }
 
    //REMOVE INPUT
@@ -36,52 +44,28 @@ function DynamicInput() {
       if (score.length > 0) {
          const newInputs = [...score];
          const newPercent = [...percent];
+         const newValueScore = [...valuescore];
+         const newValuePercent = [...valuepercent];
          newInputs.pop();
          newPercent.pop();
+         newValueScore.pop();
+         newValuePercent.pop();
          setScore(newInputs);
          setPercent(newPercent);
+         setValuescore(newValueScore);
+         setValuepercent(newValuePercent);
       } else {
          alert('No puedes retirar mas inputs');
       }
    }
 
-   //GET INPUT VALUE
-   const getInput = (ev) => {
-      console.log('hola');
-      ev.preventDefault();
-      console.log('todos');
-      const inputs = ev.target.elements.score;
-      const newScores = Array.from(inputs).map((input) => input.value);
-      setValuescore(newScores);
-      console.log(score);
-   };
-
-   // GET PERCENT VALUE
-   const getPercent = (ev) => {
-      ev.preventDefault();
-      const inputs = ev.target.elements.percent;
-      const newScores = Array.from(inputs).map((input) => input.value);
-      setValuepercent(newScores);
-   };
-
-   // const getValue = (ev) => {
-   //    ev.preventDefault();
-   //    //
-   //    const inputsScore = ev.target.elements.score;
-   //    const newScores = Array.from(inputsScore).map((input) => input.value);
-   //    setValuescore(newScores);
-   //    //
-   //    const inputsPercent = ev.target.elements.percent;
-   //    const newPercent = Array.from(inputsPercent).map((input) => input.value);
-   //    setValuepercent(newPercent);
-   // };
    return (
       <div>
          <div className="Binputs">
-            <form id="valueScore" className="content" onSubmit={getInput}>
+            <form id="valueScore" className="content">
                {score.map((input) => input)}
             </form>
-            <form id="valuePercent" className="content" onSubmit={getPercent}>
+            <form id="valuePercent" className="content">
                {percent.map((input) => input)}
             </form>
          </div>
@@ -94,9 +78,7 @@ function DynamicInput() {
             Agregar
          </button>
          <button onClick={handleRemove}>Retirar</button>
-         <button type="submit" form="valueScore">
-            Calcular
-         </button>
+         <button>Calcular</button>
       </div>
    );
 }
