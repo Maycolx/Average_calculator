@@ -75,9 +75,9 @@ function DynamicInput() {
                handlePercent();
             }}
          >
-            Agregar
+            +
          </button>
-         <button onClick={handleRemove}>Retirar</button>
+         <button onClick={handleRemove}>-</button>
          <button>Calcular</button>
       </div>
    );

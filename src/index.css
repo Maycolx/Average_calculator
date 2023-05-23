@@ -16,7 +16,8 @@
 
 #root {
    width: 100%;
-   background-color: antiquewhite;
+   background-color: rgba(39, 38, 38, 0.062);
+   backdrop-filter: blur(5px);
 }
 
 a {
@@ -30,6 +31,10 @@ a:hover {
 
 body {
    margin: 0;
+   height: 100vh;
+   background-image: url('/src/component/Button/background.svg');
+   background-repeat: no-repeat;
+   background-size: cover;
 }
 
 h1 {
