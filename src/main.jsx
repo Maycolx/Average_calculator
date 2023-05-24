@@ -8,7 +8,6 @@ import DynamicInput from './component/Button/button.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
    <React.StrictMode>
       <App />
-      <div className="form"></div>
       <DynamicInput />
    </React.StrictMode>
 );

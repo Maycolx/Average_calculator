@@ -36,13 +36,9 @@ function DynamicInput() {
          return newInputValues; // Retornar los nuevos valores actualizados
       });
    };
-   //ADD SCORE INPUT
-   function handleScore() {
+   //ADD INPUT
+   function handleInputs() {
       setScore([...score, INPUT_SCORE]);
-   }
-
-   //ADD PERCENT INPUT
-   function handlePercent() {
       setPercent([...percent, INPUT_PERCENT]);
    }
 
@@ -66,6 +62,17 @@ function DynamicInput() {
       }
    }
 
+   //AVERAGE
+   function calcular() {
+      let average = [];
+      for (let i = 0; i < valuescore.length; i++) {
+         const mult = valuescore[i] * valuepercent[i];
+         average.push(mult);
+      }
+      average = average.reduce((a, b) => a + b, 0);
+      console.log(average);
+      return <h2>Tu promedio acumulado es de {average}</h2>;
+   }
    return (
       <div>
          <div className="Binputs">
@@ -78,14 +85,14 @@ function DynamicInput() {
          </div>
          <button
             onClick={() => {
-               handleScore();
-               handlePercent();
+               handleInputs();
             }}
          >
             +
          </button>
          <button onClick={handleRemove}>-</button>
-         <button>Calcular</button>
+         {/* <button onClick={calcular}>Calcular</button> */}
+         {calcular()}
       </div>
    );
 }
