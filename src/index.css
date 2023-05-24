@@ -32,7 +32,7 @@ a:hover {
 body {
    margin: 0;
    height: 100vh;
-   background-image: url('/src/component/Button/background.svg');
+   background-image: url('/src/assets/background.svg');
    background-repeat: no-repeat;
    background-size: cover;
 }

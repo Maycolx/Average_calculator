@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './button.css';
 {
    /* <input type="text" placeholder="SCORE" name="score" />
@@ -9,6 +9,13 @@ function DynamicInput() {
    const [percent, setPercent] = useState([]);
    const [valuescore, setValuescore] = useState([]); // Array de valores de los inputs score
    const [valuepercent, setValuepercent] = useState([]); // Array de valores de los inputs percent
+   const INPUT_SCORE = <input key={score.length} type="text" placeholder={'SCORE'} name="score" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />;
+   const INPUT_PERCENT = <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />;
+
+   useEffect(() => {
+      setScore([INPUT_SCORE]);
+      setPercent([INPUT_PERCENT]);
+   }, []);
 
    const LIMIT = 3;
 
@@ -31,12 +38,12 @@ function DynamicInput() {
    };
    //ADD SCORE INPUT
    function handleScore() {
-      setScore([...score, <input key={score.length} type="text" placeholder={'SCORE'} name="score" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />]);
+      setScore([...score, INPUT_SCORE]);
    }
 
    //ADD PERCENT INPUT
    function handlePercent() {
-      setPercent([...percent, <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />]);
+      setPercent([...percent, INPUT_PERCENT]);
    }
 
    //REMOVE INPUT
