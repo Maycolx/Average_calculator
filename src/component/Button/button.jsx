@@ -70,8 +70,10 @@ function DynamicInput() {
          average.push(mult);
       }
       average = average.reduce((a, b) => a + b, 0);
-      console.log(average);
-      return <h2>Tu promedio acumulado es de {average}</h2>;
+      let average2 = average.toString().slice(0, 4);
+      console.log(average.toFixed(3));
+      //max character
+      return <h2>Tu promedio acumulado es de {average2}</h2>;
    }
    return (
       <div>
