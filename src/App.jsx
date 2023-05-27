@@ -6,7 +6,7 @@ function App() {
    return (
       <>
          <div>
-            <h1>AVERAGE CALCULATOR</h1>
+            <img src="../src/assets/UPC_Logo.png" alt="Logo" className="logo" />
          </div>
       </>
    );

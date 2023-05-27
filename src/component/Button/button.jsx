@@ -9,12 +9,19 @@ function DynamicInput() {
    const [percent, setPercent] = useState([]);
    const [valuescore, setValuescore] = useState([]); // Array de valores de los inputs score
    const [valuepercent, setValuepercent] = useState([]); // Array de valores de los inputs percent
-   const INPUT_SCORE = <input key={score.length} type="text" placeholder={'SCORE'} name="score" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />;
-   const INPUT_PERCENT = <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />;
+   const INPUT_SCORE = <input key={score.length} type="text" placeholder={'SCORE'} name="score" className="mbotton" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />;
+   const INPUT_PERCENT = () => {
+      return (
+         <div key={percent.length} className="content_percent mbotton">
+            <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" className="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />
+            <label className="symbol">%</label>
+         </div>
+      );
+   };
 
    useEffect(() => {
       setScore([INPUT_SCORE]);
-      setPercent([INPUT_PERCENT]);
+      setPercent([INPUT_PERCENT()]);
    }, []);
 
    const LIMIT = 3;
@@ -39,7 +46,7 @@ function DynamicInput() {
    //ADD INPUT
    function handleInputs() {
       setScore([...score, INPUT_SCORE]);
-      setPercent([...percent, INPUT_PERCENT]);
+      setPercent([...percent, INPUT_PERCENT()]);
    }
 
    //REMOVE INPUT
@@ -66,7 +73,7 @@ function DynamicInput() {
    function calcular() {
       let average = [];
       for (let i = 0; i < valuescore.length; i++) {
-         const mult = valuescore[i] * valuepercent[i];
+         const mult = valuescore[i] * (valuepercent[i] / 100);
          average.push(mult);
       }
       average = average.reduce((a, b) => a + b, 0);
