@@ -1,12 +1,11 @@
-import {useState} from 'react';
-
 import './App.css';
+import logo from './assets/logo.png';
 
 function App() {
    return (
       <>
          <div>
-            <img src="src/assets/react.svg" alt="Logo" className="logo" />
+            <img src={logo} alt="Logo" className="logo" />
          </div>
       </>
    );
