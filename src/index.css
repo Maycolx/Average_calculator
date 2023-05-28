@@ -16,7 +16,7 @@
 
 #root {
    width: 100%;
-   background-color: rgba(39, 38, 38, 0.062);
+   /* background-color: rgba(75, 38, 38, 0.404); */
    backdrop-filter: blur(5px);
 }
 
@@ -77,4 +77,22 @@ button:focus-visible {
 .form {
    display: flex;
    justify-content: space-between;
+}
+
+.scroll-box {
+   margin-top: 40px;
+   height: 75vh;
+   max-width: 563px;
+   padding: 2rem;
+   text-align: center;
+   border-radius: 30px;
+   overflow: auto;
+   box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.25);
+}
+.scroll-box::-webkit-scrollbar {
+   width: 5px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+   background: #66666600;
 }

@@ -7,7 +7,9 @@ import DynamicInput from './component/Button/button.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
    <React.StrictMode>
-      <App />
-      <DynamicInput />
+      <div className="scroll-box">
+         <App />
+         <DynamicInput />
+      </div>
    </React.StrictMode>
 );

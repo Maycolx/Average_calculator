@@ -33,6 +33,7 @@ input:focus {
 
 .symbol {
    border: 2px solid #ccc;
+   background-color: rgba(234, 236, 236, 0.829);
    border-left: none;
    position: relative;
    font-size: 1rem;
@@ -59,4 +60,17 @@ input:focus {
 
 .mbotton {
    margin-bottom: 10px;
+}
+
+.aprobado {
+   margin-top: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+}
+
+.input_aprobado {
+   height: 40px;
+   width: 100px;
 }

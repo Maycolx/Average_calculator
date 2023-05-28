@@ -18,6 +18,7 @@ function DynamicInput() {
          </div>
       );
    };
+   const [nota, setNota] = useState(13);
 
    useEffect(() => {
       setScore([INPUT_SCORE]);
@@ -25,6 +26,10 @@ function DynamicInput() {
    }, []);
 
    const LIMIT = 3;
+
+   const handleAprobatoria = (value) => {
+      setNota(value);
+   };
 
    // Función para manejar el cambio de valor de un input específico
    const handleInputChangeScore = (index, value) => {
@@ -78,9 +83,21 @@ function DynamicInput() {
       }
       average = average.reduce((a, b) => a + b, 0);
       let average2 = average.toString().slice(0, 4);
-      console.log(average.toFixed(3));
+
+      // Determinar el estilo basado en el valor de average2
+      const estilo = {
+         color: average2 < nota ? 'red' : 'green',
+      };
+      // Verificar si average2 es null o NaN
+      if (average2 === null || isNaN(average2)) {
+         average2 = '';
+      }
       //max character
-      return <h2>Tu promedio acumulado es de {average2}</h2>;
+      return (
+         <h2>
+            Tu promedio acumulado es de: <p style={estilo}>{average2}</p>
+         </h2>
+      );
    }
    return (
       <div>
@@ -100,7 +117,17 @@ function DynamicInput() {
             +
          </button>
          <button onClick={handleRemove}>-</button>
-         {/* <button onClick={calcular}>Calcular</button> */}
+         <div className="aprobado">
+            <p>Nota mínima para aprobar</p>
+            <input
+               id="aprobatoria"
+               type="text"
+               className="input_aprobado"
+               onChange={(ev) => {
+                  handleAprobatoria(ev.target.value);
+               }}
+            />
+         </div>
          {calcular()}
       </div>
    );
