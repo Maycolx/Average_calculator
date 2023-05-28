@@ -6,7 +6,7 @@ function App() {
    return (
       <>
          <div>
-            <img src="src/assets/Logo.png" alt="Logo" className="logo" />
+            <img src="src/assets/react.svg" alt="Logo" className="logo" />
          </div>
       </>
    );
