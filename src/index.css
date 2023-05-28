@@ -17,7 +17,6 @@
 #root {
    width: 100%;
    /* background-color: rgba(75, 38, 38, 0.404); */
-   backdrop-filter: blur(5px);
 }
 
 a {
@@ -88,6 +87,7 @@ button:focus-visible {
    border-radius: 30px;
    overflow: auto;
    box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.25);
+   backdrop-filter: brightness(0.93) blur(5px);
 }
 .scroll-box::-webkit-scrollbar {
    width: 5px;
