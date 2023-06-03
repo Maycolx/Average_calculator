@@ -9,11 +9,11 @@ function DynamicInput() {
    const [percent, setPercent] = useState([]);
    const [valuescore, setValuescore] = useState([]); // Array de valores de los inputs score
    const [valuepercent, setValuepercent] = useState([]); // Array de valores de los inputs percent
-   const INPUT_SCORE = <input key={score.length} type="text" placeholder={'SCORE'} name="score" className="mbotton" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />;
+   const INPUT_SCORE = <input key={score.length} type="number" placeholder={'SCORE'} name="score" className="mbotton" onChange={(ev) => handleInputChangeScore(percent.length, ev.target.value)} />;
    const INPUT_PERCENT = () => {
       return (
          <div key={percent.length} className="content_percent mbotton">
-            <input key={percent.length} type="text" placeholder={'PERCENT'} name="percent" className="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />
+            <input key={percent.length} type="number" placeholder={'PERCENT'} name="percent" className="percent" onChange={(ev) => handleInputChangePercent(score.length, ev.target.value)} />
             <label className="symbol">%</label>
          </div>
       );
@@ -56,7 +56,7 @@ function DynamicInput() {
 
    //REMOVE INPUT
    function handleRemove() {
-      if (score.length > 0) {
+      if (score.length > 1) {
          const newInputs = [...score];
          const newPercent = [...percent];
          const newValueScore = [...valuescore];
@@ -76,23 +76,28 @@ function DynamicInput() {
 
    //AVERAGE
    function calcular() {
+      console.log(nota)
       let average = [];
       for (let i = 0; i < valuescore.length; i++) {
          const mult = valuescore[i] * (valuepercent[i] / 100);
          average.push(mult);
       }
       average = average.reduce((a, b) => a + b, 0);
+      //MAX CHARACTER
       let average2 = average.toString().slice(0, 4);
-
+      console.log(average2)
+      // debugger;
       // Determinar el estilo basado en el valor de average2
       const estilo = {
          color: average2 < nota ? 'red' : 'green',
+
       };
+      console.log(estilo)
       // Verificar si average2 es null o NaN
       if (average2 === null || isNaN(average2)) {
          average2 = '';
       }
-      //max character
+
       return (
          <h2>
             Tu promedio acumulado es de: <p style={estilo}>{average2}</p>
