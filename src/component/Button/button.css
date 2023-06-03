@@ -74,3 +74,44 @@ input:focus {
    height: 40px;
    width: 100px;
 }
+
+.more{
+   display: flex;
+   justify-content: center;
+   gap: 30px;
+   font-size: 1rem;
+}
+
+@media(max-width:500px){
+   .Binputs{
+      width: 284px;
+   }
+
+   input{
+      width: 110px;
+      height: 45px;
+      font-size: 0.6rem;
+   }
+
+   .percent{
+      width: 70px;
+   }
+
+   .symbol{
+      height: 41px;
+      width: 40px;
+      font-size: 0.7rem;
+   }
+
+   .aprobado{
+      font-size: 0.9rem;
+   }
+
+   h2{
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+   }
+
+
+
+}

@@ -109,6 +109,7 @@ function DynamicInput() {
                {percent.map((input) => input)}
             </form>
          </div>
+         <div className='more'>
          <button
             onClick={() => {
                handleInputs();
@@ -117,6 +118,7 @@ function DynamicInput() {
             +
          </button>
          <button onClick={handleRemove}>-</button>
+         </div>
          <div className="aprobado">
             <p>Nota mínima para aprobar</p>
             <input

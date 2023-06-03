@@ -96,3 +96,13 @@ button:focus-visible {
 .scroll-box::-webkit-scrollbar-thumb {
    background: #66666600;
 }
+
+
+@media(max-width:500px){
+   #root{
+   width: auto;}
+
+   .scroll-box{
+      padding: 0.5rem;
+   }
+}
